@@ -1,10 +1,8 @@
-
 document.addEventListener("DOMContentLoaded", () => {
 
-
-    /* =========================================
+    /* =====================================================
        AÑO AUTOMÁTICO
-    ========================================== */
+    ====================================================== */
 
     const year = document.getElementById("year");
 
@@ -13,10 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
-    /* =========================================
+    /* =====================================================
        MENÚ ACTIVO
-    ========================================== */
+    ====================================================== */
 
     const currentPage =
         window.location.pathname.split("/").pop() || "index.html";
@@ -26,22 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navLinks.forEach(link => {
 
-        const linkPage =
-            link.getAttribute("href");
-
-        if (linkPage === currentPage) {
-
+        if (link.getAttribute("href") === currentPage) {
             link.classList.add("active");
-
         }
 
     });
 
 
-
-    /* =========================================
+    /* =====================================================
        MENÚ MÓVIL
-    ========================================== */
+    ====================================================== */
 
     const menuToggle =
         document.getElementById("menuToggle");
@@ -55,23 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             mainNav.classList.toggle("open");
 
-            menuToggle.classList.toggle("active");
-
         });
 
 
-        /* Cerrar menú al seleccionar una opción */
-
-        const mobileLinks =
-            mainNav.querySelectorAll("a");
-
-        mobileLinks.forEach(link => {
+        mainNav.querySelectorAll("a").forEach(link => {
 
             link.addEventListener("click", () => {
 
                 mainNav.classList.remove("open");
-
-                menuToggle.classList.remove("active");
 
             });
 
@@ -80,19 +62,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
-    /* =========================================
+    /* =====================================================
        ANIMACIONES AL HACER SCROLL
-    ========================================== */
+    ====================================================== */
 
     const revealElements =
         document.querySelectorAll(".reveal");
 
     if ("IntersectionObserver" in window) {
 
-        const revealObserver =
+        const observer =
             new IntersectionObserver(
-                (entries, observer) => {
+                entries => {
 
                     entries.forEach(entry => {
 
@@ -115,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         revealElements.forEach(element => {
 
-            revealObserver.observe(element);
+            observer.observe(element);
 
         });
 
@@ -130,14 +111,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
-    /* =========================================
+    /* =====================================================
        GALERÍA
-       2 IMÁGENES POR PRODUCTO
-    ========================================== */
+    ====================================================== */
 
     const galleryCards =
-        document.querySelectorAll(".gallery-card");
+        document.querySelectorAll(".product-card");
 
     const galleryModal =
         document.getElementById("galleryModal");
@@ -157,66 +136,128 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleryNext =
         document.getElementById("galleryNext");
 
-    const galleryCounter =
-        document.getElementById("galleryCounter");
+    const galleryNumber =
+        document.getElementById("galleryNumber");
 
 
-    let currentGallery = [];
+    let currentImages = [];
 
-    let currentImageIndex = 0;
+    let currentImage = 0;
 
 
+    /* =====================================================
+       MOSTRAR IMAGEN
+    ====================================================== */
 
-    /* =========================================
+    function showImage(index) {
+
+        if (!currentImages.length) {
+            return;
+        }
+
+        currentImage = index;
+
+
+        /* Evita que el número se salga del rango */
+
+        if (currentImage < 0) {
+            currentImage = currentImages.length - 1;
+        }
+
+        if (currentImage >= currentImages.length) {
+            currentImage = 0;
+        }
+
+
+        /* Animación de cambio */
+
+        modalImage.classList.remove("gallery-photo-active");
+
+
+        setTimeout(() => {
+
+            modalImage.src =
+                currentImages[currentImage];
+
+            modalImage.alt =
+                modalTitle.textContent;
+
+            modalImage.classList.add(
+                "gallery-photo-active"
+            );
+
+        }, 100);
+
+
+        /* Número de imagen */
+
+        galleryNumber.textContent =
+            `${currentImage + 1} / ${currentImages.length}`;
+
+    }
+
+
+    /* =====================================================
        ABRIR GALERÍA
-    ========================================== */
+    ====================================================== */
 
     function openGallery(card) {
 
         try {
 
-            currentGallery =
-                JSON.parse(card.dataset.gallery);
+            currentImages =
+                JSON.parse(card.dataset.images);
 
         } catch (error) {
 
             console.error(
-                "No se pudo cargar la galería:",
+                "No se pudieron cargar las imágenes del proyecto.",
                 error
             );
 
-            currentGallery = [];
-
-        }
-
-
-        if (!currentGallery.length) {
             return;
         }
 
 
-        currentImageIndex = 0;
+        if (!currentImages.length) {
+            return;
+        }
 
+
+        currentImage = 0;
+
+
+        /* Título */
 
         modalTitle.textContent =
-            card.dataset.title || "";
+            card.dataset.title || "Proyecto";
 
 
-        updateGalleryImage();
+        /* Mostrar primera imagen */
+
+        showImage(0);
 
 
-        galleryModal.classList.add("active");
+        /* Abrir modal */
 
+        galleryModal.classList.add("open");
+
+        galleryModal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        /* Evitar scroll de la página */
 
         document.body.style.overflow = "hidden";
 
     }
 
 
-
-    /* =========================================
-       CLIC EN CADA PRODUCTO
-    ========================================== */
+    /* =====================================================
+       CLIC EN LAS TARJETAS
+    ====================================================== */
 
     galleryCards.forEach(card => {
 
@@ -226,144 +267,120 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
+
+        /* También funciona con Enter */
+
+        card.addEventListener("keydown", event => {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+
+                event.preventDefault();
+
+                openGallery(card);
+
+            }
+
+        });
+
     });
 
 
+    /* =====================================================
+       FOTO ANTERIOR
+    ====================================================== */
 
-    /* =========================================
-       ACTUALIZAR IMAGEN
-    ========================================== */
+    if (galleryPrev) {
 
-    function updateGalleryImage() {
+        galleryPrev.addEventListener("click", event => {
 
-        if (!currentGallery.length) {
+            event.stopPropagation();
+
+            if (!currentImages.length) {
+                return;
+            }
+
+            currentImage--;
+
+            if (currentImage < 0) {
+
+                currentImage =
+                    currentImages.length - 1;
+
+            }
+
+            showImage(currentImage);
+
+        });
+
+    }
+
+
+    /* =====================================================
+       FOTO SIGUIENTE
+    ====================================================== */
+
+    if (galleryNext) {
+
+        galleryNext.addEventListener("click", event => {
+
+            event.stopPropagation();
+
+            if (!currentImages.length) {
+                return;
+            }
+
+            currentImage++;
+
+            if (
+                currentImage >=
+                currentImages.length
+            ) {
+
+                currentImage = 0;
+
+            }
+
+            showImage(currentImage);
+
+        });
+
+    }
+
+
+    /* =====================================================
+       CERRAR GALERÍA
+    ====================================================== */
+
+    function closeGallery() {
+
+        if (!galleryModal) {
             return;
         }
 
 
-        /* Animación de salida */
+        galleryModal.classList.remove("open");
 
-        modalImage.classList.remove(
-            "gallery-image-show"
+        galleryModal.setAttribute(
+            "aria-hidden",
+            "true"
         );
 
+
+        document.body.style.overflow = "";
+
+
+        /* Limpiar imagen después de cerrar */
 
         setTimeout(() => {
 
-            modalImage.src =
-                currentGallery[currentImageIndex];
-
-
-            modalImage.classList.add(
-                "gallery-image-show"
-            );
-
-        }, 100);
-
-
-        /* Contador */
-
-        galleryCounter.textContent =
-            `${currentImageIndex + 1} / ${currentGallery.length}`;
-
-
-        /* Ocultar flechas si solo existe una imagen */
-
-        if (currentGallery.length <= 1) {
-
-            galleryPrev.style.display = "none";
-
-            galleryNext.style.display = "none";
-
-        } else {
-
-            galleryPrev.style.display = "flex";
-
-            galleryNext.style.display = "flex";
-
-        }
-
-    }
-
-
-
-    /* =========================================
-       IMAGEN ANTERIOR
-    ========================================== */
-
-    if (galleryPrev) {
-
-        galleryPrev.addEventListener(
-            "click",
-            event => {
-
-                event.stopPropagation();
-
-
-                currentImageIndex--;
-
-
-                if (currentImageIndex < 0) {
-
-                    currentImageIndex =
-                        currentGallery.length - 1;
-
-                }
-
-
-                updateGalleryImage();
-
+            if (modalImage) {
+                modalImage.src = "";
             }
-        );
 
-    }
-
-
-
-    /* =========================================
-       IMAGEN SIGUIENTE
-    ========================================== */
-
-    if (galleryNext) {
-
-        galleryNext.addEventListener(
-            "click",
-            event => {
-
-                event.stopPropagation();
-
-
-                currentImageIndex++;
-
-
-                if (
-                    currentImageIndex >=
-                    currentGallery.length
-                ) {
-
-                    currentImageIndex = 0;
-
-                }
-
-
-                updateGalleryImage();
-
-            }
-        );
-
-    }
-
-
-
-    /* =========================================
-       CERRAR MODAL
-    ========================================== */
-
-    function closeGallery() {
-
-        galleryModal.classList.remove("active");
-
-        document.body.style.overflow = "";
+        }, 250);
 
     }
 
@@ -378,10 +395,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
-    /* =========================================
-       CERRAR AL HACER CLIC AFUERA
-    ========================================== */
+    /* =====================================================
+       CERRAR TOCANDO EL FONDO
+    ====================================================== */
 
     if (galleryModal) {
 
@@ -390,8 +406,8 @@ document.addEventListener("DOMContentLoaded", () => {
             event => {
 
                 if (
-                    event.target ===
-                    galleryModal
+                    event.target === galleryModal ||
+                    event.target.classList.contains("modal-backdrop")
                 ) {
 
                     closeGallery();
@@ -404,10 +420,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
-    /* =========================================
+    /* =====================================================
        TECLADO
-    ========================================== */
+    ====================================================== */
 
     document.addEventListener(
         "keydown",
@@ -415,39 +430,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (
                 !galleryModal ||
-                !galleryModal.classList.contains("active")
+                !galleryModal.classList.contains("open")
             ) {
+
                 return;
+
             }
 
 
-            /* Flecha izquierda */
-
-            if (
-                event.key === "ArrowLeft"
-            ) {
+            if (event.key === "ArrowLeft") {
 
                 galleryPrev.click();
 
             }
 
 
-            /* Flecha derecha */
-
-            if (
-                event.key === "ArrowRight"
-            ) {
+            if (event.key === "ArrowRight") {
 
                 galleryNext.click();
 
             }
 
 
-            /* Escape */
-
-            if (
-                event.key === "Escape"
-            ) {
+            if (event.key === "Escape") {
 
                 closeGallery();
 
@@ -457,213 +462,40 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-
-    /* =========================================
-       VER MÁS PRODUCTOS
-    ========================================== */
+    /* =====================================================
+       BOTÓN VER MÁS
+    ====================================================== */
 
     const loadMore =
         document.getElementById("loadMore");
 
-
     if (loadMore) {
 
-        let productsLoaded = false;
+        loadMore.addEventListener("click", () => {
 
+            /*
+             * El botón se mantiene en la página,
+             * pero no agrega productos nuevos.
+             * Así no se modifica el orden ni se
+             * agregan tarjetas que usted no pidió.
+             */
 
-        loadMore.addEventListener(
-            "click",
-            () => {
+            loadMore.textContent =
+                "Todos los proyectos mostrados";
 
+            loadMore.disabled = true;
 
-                if (productsLoaded) {
-
-                    return;
-
-                }
-
-
-                productsLoaded = true;
-
-
-                const galleryGrid =
-                    document.querySelector(".gallery-grid");
-
-
-                if (!galleryGrid) {
-                    return;
-                }
-
-
-
-                /* PRODUCTOS ADICIONALES */
-
-                const extraProducts = [
-
-                    {
-                        title: "Diseño corporativo",
-                        image: "assets/branding-banner.jpg",
-                        image2: "assets/branding-banner-2.jpg"
-                    },
-
-                    {
-                        title: "Material publicitario",
-                        image: "assets/contact-banner.jpg",
-                        image2: "assets/contact-banner-2.jpg"
-                    },
-
-                    {
-                        title: "Identidad visual",
-                        image: "assets/product-1.jpg",
-                        image2: "assets/product-1-2.jpg"
-                    },
-
-                    {
-                        title: "Impresión personalizada",
-                        image: "assets/product-2.jpg",
-                        image2: "assets/product-2-2.jpg"
-                    }
-
-                ];
-
-
-
-                extraProducts.forEach(
-                    (product, index) => {
-
-
-                        const card =
-                            document.createElement("article");
-
-
-                        card.className =
-                            "gallery-card reveal visible";
-
-
-                        card.dataset.gallery =
-                            JSON.stringify([
-                                product.image,
-                                product.image2
-                            ]);
-
-
-                        card.dataset.title =
-                            product.title;
-
-
-
-                        card.innerHTML = `
-
-                            <div class="gallery-image">
-
-                                <img
-                                    src="${product.image}"
-                                    alt="${product.title}"
-                                >
-
-                            </div>
-
-                            <div class="gallery-info">
-
-                                <h3>
-                                    ${product.title}
-                                </h3>
-
-                                <span>
-
-                                    Ver proyecto
-
-                                    <i class="fa-solid fa-arrow-right"></i>
-
-                                </span>
-
-                            </div>
-
-                        `;
-
-
-
-                        /* Abrir galería */
-
-                        card.addEventListener(
-                            "click",
-                            () => {
-
-                                openGallery(card);
-
-                            }
-                        );
-
-
-                        galleryGrid.appendChild(card);
-
-
-                    }
-                );
-
-
-
-                /* Cambiar botón */
-
-                loadMore.innerHTML = `
-
-                    Mostrar menos
-
-                    <i class="fa-solid fa-minus"></i>
-
-                `;
-
-
-                /* Función para ocultar nuevamente */
-
-                loadMore.onclick = () => {
-
-                    const extraCards =
-                        galleryGrid.querySelectorAll(
-                            ".gallery-card:nth-child(n+9)"
-                        );
-
-
-                    extraCards.forEach(card => {
-
-                        card.remove();
-
-                    });
-
-
-                    productsLoaded = false;
-
-
-                    loadMore.innerHTML = `
-
-                        Ver más productos
-
-                        <i class="fa-solid fa-plus"></i>
-
-                    `;
-
-
-                    /* Restaurar evento */
-
-                    loadMore.onclick = null;
-
-                };
-
-
-            }
-        );
+        });
 
     }
 
 
-
-    /* =========================================
+    /* =====================================================
        FORMULARIO DE CONTACTO
-    ========================================== */
+    ====================================================== */
 
     const contactForm =
         document.getElementById("contactForm");
-
 
     if (contactForm) {
 
@@ -675,9 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 const formMessage =
-                    document.getElementById(
-                        "formMessage"
-                    );
+                    document.getElementById("formMessage");
 
 
                 if (formMessage) {
@@ -685,9 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     formMessage.textContent =
                         "¡Mensaje preparado! Para recibirlo realmente, conecte este formulario a su correo o servicio de formularios.";
 
-                    formMessage.classList.add(
-                        "show"
-                    );
+                    formMessage.classList.add("show");
 
                 }
 
@@ -698,4 +526,5 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
     }
+
 });
