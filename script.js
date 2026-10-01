@@ -1,464 +1,705 @@
+```javascript
 document.addEventListener("DOMContentLoaded", () => {
 
 
-  /* =========================
-     AÑO AUTOMÁTICO
-  ========================= */
+    /* =========================================
+       AÑO AUTOMÁTICO
+    ========================================== */
 
-  const year = document.getElementById("year");
+    const year = document.getElementById("year");
 
-  if (year) {
+    if (year) {
+        year.textContent = new Date().getFullYear();
+    }
 
-    year.textContent = new Date().getFullYear();
 
-  }
 
+    /* =========================================
+       MENÚ ACTIVO
+    ========================================== */
 
+    const currentPage =
+        window.location.pathname.split("/").pop() || "index.html";
 
-  /* =========================
-     PÁGINA ACTIVA DEL MENÚ
-  ========================= */
+    const navLinks =
+        document.querySelectorAll(".main-nav a");
 
-  const page =
-    location.pathname.split("/").pop()
-    || "index.html";
+    navLinks.forEach(link => {
 
+        const linkPage =
+            link.getAttribute("href");
 
-  const pageName =
-    page.replace(".html", "")
-    || "inicio";
+        if (linkPage === currentPage) {
 
-
-  document
-    .querySelectorAll(".main-nav a")
-    .forEach(link => {
-
-      const target =
-        link.dataset.page;
-
-
-      if (
-        (pageName === "index"
-          && target === "inicio")
-        ||
-        target === pageName
-      ) {
-
-        link.classList.add("active");
-
-      }
-
-    });
-
-
-
-  /* =========================
-     MENÚ PARA CELULAR
-  ========================= */
-
-  const toggle =
-    document.querySelector(".menu-toggle");
-
-
-  const nav =
-    document.querySelector(".main-nav");
-
-
-  if (toggle && nav) {
-
-
-    toggle.addEventListener("click", () => {
-
-      const open =
-        nav.classList.toggle("open");
-
-
-      toggle.setAttribute(
-        "aria-expanded",
-        String(open)
-      );
-
-    });
-
-
-    nav
-      .querySelectorAll("a")
-      .forEach(a => {
-
-        a.addEventListener("click", () => {
-
-          nav.classList.remove("open");
-
-        });
-
-      });
-
-  }
-
-
-
-  /* =========================
-     ANIMACIÓN AL HACER SCROLL
-  ========================= */
-
-  const reveals =
-    document.querySelectorAll(".reveal");
-
-
-  const observer =
-    new IntersectionObserver(
-      entries => {
-
-        entries.forEach(entry => {
-
-          if (entry.isIntersecting) {
-
-            entry.target.classList.add(
-              "visible"
-            );
-
-            observer.unobserve(
-              entry.target
-            );
-
-          }
-
-        });
-
-      },
-      {
-        threshold: 0.12
-      }
-    );
-
-
-  reveals.forEach(el => {
-
-    observer.observe(el);
-
-  });
-
-
-
-  /* =========================
-     MODAL DE PRODUCTOS
-  ========================= */
-
-  const modal =
-    document.getElementById(
-      "productModal"
-    );
-
-
-  const modalImage =
-    document.getElementById(
-      "modalImage"
-    );
-
-
-  const modalTitle =
-    document.getElementById(
-      "modalTitle"
-    );
-
-
-  document
-    .querySelectorAll(".product-card")
-    .forEach(card => {
-
-
-      card.addEventListener(
-        "click",
-        () => {
-
-
-          if (!modal) return;
-
-
-          modalImage.src =
-            card.dataset.image;
-
-
-          modalImage.alt =
-            card.dataset.product;
-
-
-          modalTitle.textContent =
-            card.dataset.product;
-
-
-          modal.classList.add("open");
-
-
-          modal.setAttribute(
-            "aria-hidden",
-            "false"
-          );
-
-
-          document.body.style.overflow =
-            "hidden";
+            link.classList.add("active");
 
         }
-      );
 
     });
 
 
 
-  /* =========================
-     CERRAR MODAL
-  ========================= */
+    /* =========================================
+       MENÚ MÓVIL
+    ========================================== */
 
-  function closeModal() {
+    const menuToggle =
+        document.getElementById("menuToggle");
 
+    const mainNav =
+        document.getElementById("mainNav");
 
-    if (!modal) return;
+    if (menuToggle && mainNav) {
 
+        menuToggle.addEventListener("click", () => {
 
-    modal.classList.remove("open");
+            mainNav.classList.toggle("open");
 
+            menuToggle.classList.toggle("active");
 
-    modal.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-
-    document.body.style.overflow =
-      "";
-
-  }
+        });
 
 
+        /* Cerrar menú al seleccionar una opción */
 
-  document
-    .querySelectorAll("[data-close-modal]")
-    .forEach(el => {
+        const mobileLinks =
+            mainNav.querySelectorAll("a");
 
-      el.addEventListener(
-        "click",
-        closeModal
-      );
+        mobileLinks.forEach(link => {
 
-    });
+            link.addEventListener("click", () => {
 
+                mainNav.classList.remove("open");
 
+                menuToggle.classList.remove("active");
 
-  document.addEventListener(
-    "keydown",
-    event => {
+            });
 
-      if (event.key === "Escape") {
-
-        closeModal();
-
-      }
+        });
 
     }
-  );
 
 
 
-  /* =========================
-     VER MÁS PRODUCTOS
-  ========================= */
+    /* =========================================
+       ANIMACIONES AL HACER SCROLL
+    ========================================== */
 
-  const more =
-    document.getElementById(
-      "moreProducts"
-    );
+    const revealElements =
+        document.querySelectorAll(".reveal");
 
+    if ("IntersectionObserver" in window) {
 
-  if (more) {
+        const revealObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
 
+                    entries.forEach(entry => {
 
-    more.addEventListener(
-      "click",
-      () => {
+                        if (entry.isIntersecting) {
 
+                            entry.target.classList.add("visible");
 
-        const grid =
-          document.querySelector(
-            ".gallery-grid"
-          );
+                            observer.unobserve(entry.target);
 
+                        }
 
-        const extra = [
+                    });
 
-          [
-            "Rótulo en acrílico",
-            "assets/contact-banner.jpg"
-          ],
-
-          [
-            "Rótulo colgante interno",
-            "assets/branding-banner.jpg"
-          ],
-
-          [
-            "Rótulo tipo CANVAS",
-            "assets/contact-banner.jpg"
-          ],
-
-          [
-            "Rótulo calado",
-            "assets/branding-banner.jpg"
-          ]
-
-        ];
+                },
+                {
+                    threshold: 0.12
+                }
+            );
 
 
-        if (more.dataset.loaded) {
+        revealElements.forEach(element => {
 
-          return;
+            revealObserver.observe(element);
+
+        });
+
+    } else {
+
+        revealElements.forEach(element => {
+
+            element.classList.add("visible");
+
+        });
+
+    }
+
+
+
+    /* =========================================
+       GALERÍA
+       2 IMÁGENES POR PRODUCTO
+    ========================================== */
+
+    const galleryCards =
+        document.querySelectorAll(".gallery-card");
+
+    const galleryModal =
+        document.getElementById("galleryModal");
+
+    const modalImage =
+        document.getElementById("modalImage");
+
+    const modalTitle =
+        document.getElementById("modalTitle");
+
+    const modalClose =
+        document.getElementById("modalClose");
+
+    const galleryPrev =
+        document.getElementById("galleryPrev");
+
+    const galleryNext =
+        document.getElementById("galleryNext");
+
+    const galleryCounter =
+        document.getElementById("galleryCounter");
+
+
+    let currentGallery = [];
+
+    let currentImageIndex = 0;
+
+
+
+    /* =========================================
+       ABRIR GALERÍA
+    ========================================== */
+
+    function openGallery(card) {
+
+        try {
+
+            currentGallery =
+                JSON.parse(card.dataset.gallery);
+
+        } catch (error) {
+
+            console.error(
+                "No se pudo cargar la galería:",
+                error
+            );
+
+            currentGallery = [];
 
         }
 
 
-
-        extra.forEach(
-          ([name, image]) => {
-
-
-            const card =
-              document.createElement(
-                "button"
-              );
+        if (!currentGallery.length) {
+            return;
+        }
 
 
-            card.className =
-              "product-card reveal visible";
+        currentImageIndex = 0;
 
 
-            card.type =
-              "button";
+        modalTitle.textContent =
+            card.dataset.title || "";
 
 
-            card.dataset.product =
-              name;
+        updateGalleryImage();
 
 
-            card.dataset.image =
-              image;
+        galleryModal.classList.add("active");
 
 
-            card.innerHTML = `
+        document.body.style.overflow = "hidden";
 
-              <span class="product-img">
-
-                <img
-                  src="${image}"
-                  alt="${name}"
-                  loading="lazy"
-                >
-
-              </span>
-
-              <span class="product-name">
-                ${name}
-              </span>
-
-              <span class="product-arrow">
-                ↗
-              </span>
-
-            `;
+    }
 
 
 
-            card.addEventListener(
-              "click",
-              () => {
+    /* =========================================
+       CLIC EN CADA PRODUCTO
+    ========================================== */
+
+    galleryCards.forEach(card => {
+
+        card.addEventListener("click", () => {
+
+            openGallery(card);
+
+        });
+
+    });
 
 
-                modalImage.src =
-                  image;
+
+    /* =========================================
+       ACTUALIZAR IMAGEN
+    ========================================== */
+
+    function updateGalleryImage() {
+
+        if (!currentGallery.length) {
+            return;
+        }
 
 
-                modalImage.alt =
-                  name;
+        /* Animación de salida */
 
-
-                modalTitle.textContent =
-                  name;
-
-
-                modal.classList.add(
-                  "open"
-                );
-
-
-                modal.setAttribute(
-                  "aria-hidden",
-                  "false"
-                );
-
-
-                document.body.style.overflow =
-                  "hidden";
-
-              }
-            );
-
-
-            grid.appendChild(card);
-
-          }
+        modalImage.classList.remove(
+            "gallery-image-show"
         );
 
 
+        setTimeout(() => {
 
-        more.dataset.loaded =
-          "true";
+            modalImage.src =
+                currentGallery[currentImageIndex];
 
 
-        more.innerHTML =
-          "Productos cargados ✓";
+            modalImage.classList.add(
+                "gallery-image-show"
+            );
 
-      }
+        }, 100);
+
+
+        /* Contador */
+
+        galleryCounter.textContent =
+            `${currentImageIndex + 1} / ${currentGallery.length}`;
+
+
+        /* Ocultar flechas si solo existe una imagen */
+
+        if (currentGallery.length <= 1) {
+
+            galleryPrev.style.display = "none";
+
+            galleryNext.style.display = "none";
+
+        } else {
+
+            galleryPrev.style.display = "flex";
+
+            galleryNext.style.display = "flex";
+
+        }
+
+    }
+
+
+
+    /* =========================================
+       IMAGEN ANTERIOR
+    ========================================== */
+
+    if (galleryPrev) {
+
+        galleryPrev.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+
+                currentImageIndex--;
+
+
+                if (currentImageIndex < 0) {
+
+                    currentImageIndex =
+                        currentGallery.length - 1;
+
+                }
+
+
+                updateGalleryImage();
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================
+       IMAGEN SIGUIENTE
+    ========================================== */
+
+    if (galleryNext) {
+
+        galleryNext.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+
+                currentImageIndex++;
+
+
+                if (
+                    currentImageIndex >=
+                    currentGallery.length
+                ) {
+
+                    currentImageIndex = 0;
+
+                }
+
+
+                updateGalleryImage();
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================
+       CERRAR MODAL
+    ========================================== */
+
+    function closeGallery() {
+
+        galleryModal.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    if (modalClose) {
+
+        modalClose.addEventListener(
+            "click",
+            closeGallery
+        );
+
+    }
+
+
+
+    /* =========================================
+       CERRAR AL HACER CLIC AFUERA
+    ========================================== */
+
+    if (galleryModal) {
+
+        galleryModal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    galleryModal
+                ) {
+
+                    closeGallery();
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================
+       TECLADO
+    ========================================== */
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                !galleryModal ||
+                !galleryModal.classList.contains("active")
+            ) {
+                return;
+            }
+
+
+            /* Flecha izquierda */
+
+            if (
+                event.key === "ArrowLeft"
+            ) {
+
+                galleryPrev.click();
+
+            }
+
+
+            /* Flecha derecha */
+
+            if (
+                event.key === "ArrowRight"
+            ) {
+
+                galleryNext.click();
+
+            }
+
+
+            /* Escape */
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeGallery();
+
+            }
+
+        }
     );
 
-  }
+
+
+    /* =========================================
+       VER MÁS PRODUCTOS
+    ========================================== */
+
+    const loadMore =
+        document.getElementById("loadMore");
+
+
+    if (loadMore) {
+
+        let productsLoaded = false;
+
+
+        loadMore.addEventListener(
+            "click",
+            () => {
+
+
+                if (productsLoaded) {
+
+                    return;
+
+                }
+
+
+                productsLoaded = true;
+
+
+                const galleryGrid =
+                    document.querySelector(".gallery-grid");
+
+
+                if (!galleryGrid) {
+                    return;
+                }
 
 
 
-  /* =========================
-     FORMULARIO
-  ========================= */
+                /* PRODUCTOS ADICIONALES */
 
-  const form =
-    document.getElementById(
-      "contactForm"
-    );
+                const extraProducts = [
+
+                    {
+                        title: "Diseño corporativo",
+                        image: "assets/branding-banner.jpg",
+                        image2: "assets/branding-banner-2.jpg"
+                    },
+
+                    {
+                        title: "Material publicitario",
+                        image: "assets/contact-banner.jpg",
+                        image2: "assets/contact-banner-2.jpg"
+                    },
+
+                    {
+                        title: "Identidad visual",
+                        image: "assets/product-1.jpg",
+                        image2: "assets/product-1-2.jpg"
+                    },
+
+                    {
+                        title: "Impresión personalizada",
+                        image: "assets/product-2.jpg",
+                        image2: "assets/product-2-2.jpg"
+                    }
+
+                ];
 
 
-  const message =
-    document.getElementById(
-      "formMessage"
-    );
+
+                extraProducts.forEach(
+                    (product, index) => {
 
 
-  if (form && message) {
+                        const card =
+                            document.createElement("article");
 
 
-    form.addEventListener(
-      "submit",
-      event => {
+                        card.className =
+                            "gallery-card reveal visible";
 
 
-        event.preventDefault();
+                        card.dataset.gallery =
+                            JSON.stringify([
+                                product.image,
+                                product.image2
+                            ]);
 
 
-        message.textContent =
-          "¡Mensaje preparado! Para recibirlo realmente, conecte este formulario a su correo o servicio de formularios.";
+                        card.dataset.title =
+                            product.title;
 
 
-        form.reset();
 
-      }
-    );
+                        card.innerHTML = `
 
-  }
+                            <div class="gallery-image">
+
+                                <img
+                                    src="${product.image}"
+                                    alt="${product.title}"
+                                >
+
+                            </div>
+
+                            <div class="gallery-info">
+
+                                <h3>
+                                    ${product.title}
+                                </h3>
+
+                                <span>
+
+                                    Ver proyecto
+
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </span>
+
+                            </div>
+
+                        `;
+
+
+
+                        /* Abrir galería */
+
+                        card.addEventListener(
+                            "click",
+                            () => {
+
+                                openGallery(card);
+
+                            }
+                        );
+
+
+                        galleryGrid.appendChild(card);
+
+
+                    }
+                );
+
+
+
+                /* Cambiar botón */
+
+                loadMore.innerHTML = `
+
+                    Mostrar menos
+
+                    <i class="fa-solid fa-minus"></i>
+
+                `;
+
+
+                /* Función para ocultar nuevamente */
+
+                loadMore.onclick = () => {
+
+                    const extraCards =
+                        galleryGrid.querySelectorAll(
+                            ".gallery-card:nth-child(n+9)"
+                        );
+
+
+                    extraCards.forEach(card => {
+
+                        card.remove();
+
+                    });
+
+
+                    productsLoaded = false;
+
+
+                    loadMore.innerHTML = `
+
+                        Ver más productos
+
+                        <i class="fa-solid fa-plus"></i>
+
+                    `;
+
+
+                    /* Restaurar evento */
+
+                    loadMore.onclick = null;
+
+                };
+
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================
+       FORMULARIO DE CONTACTO
+    ========================================== */
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+
+    if (contactForm) {
+
+        contactForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+
+                const formMessage =
+                    document.getElementById(
+                        "formMessage"
+                    );
+
+
+                if (formMessage) {
+
+                    formMessage.textContent =
+                        "¡Mensaje preparado! Para recibirlo realmente, conecte este formulario a su correo o servicio de formularios.";
+
+                    formMessage.classList.add(
+                        "show"
+                    );
+
+                }
+
+
+                contactForm.reset();
+
+            }
+        );
+
+    }
+
+
 
 });
+```
