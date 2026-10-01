@@ -1,66 +1,96 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ALoGráfico | Galería</title>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
+    <!-- Font Awesome -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     >
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
+    <!-- =====================================================
          HEADER
-    ========================== -->
+    ====================================================== -->
 
     <header class="site-header">
 
         <div class="container nav-wrap">
 
             <a href="index.html" class="brand">
-                <img src="assets/logo.jpg" alt="ALoGráfico">
+                <img
+                    src="assets/logo.jpg"
+                    alt="ALoGráfico"
+                >
             </a>
 
-            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Abrir menú"
+            >
                 <i class="fa-solid fa-bars"></i>
             </button>
 
             <nav class="main-nav" id="mainNav">
 
-                <a href="index.html">Inicio</a>
+                <a href="index.html">
+                    Inicio
+                </a>
 
-                <a href="nosotros.html">Nosotros</a>
+                <a href="nosotros.html">
+                    Nosotros
+                </a>
 
-                <a href="servicios.html">Servicios</a>
+                <a href="servicios.html">
+                    Servicios
+                </a>
 
-                <a href="galeria.html" class="active">Galería</a>
+                <a
+                    href="galeria.html"
+                    class="active"
+                >
+                    Galería
+                </a>
 
-                <a href="contactenos.html">Contáctenos</a>
+                <a href="contactenos.html">
+                    Contáctenos
+                </a>
 
             </nav>
 
             <div class="nav-actions">
 
-                <a href="contactenos.html" class="btn btn-outline">
+                <a
+                    href="contactenos.html"
+                    class="btn btn-outline"
+                >
                     Consultar
                 </a>
 
-                <a href="contactenos.html" class="btn btn-primary">
+                <a
+                    href="contactenos.html"
+                    class="btn btn-primary"
+                >
                     Contáctenos
                 </a>
 
@@ -71,9 +101,9 @@
     </header>
 
 
-    <!-- =========================
+    <!-- =====================================================
          BANNER
-    ========================== -->
+    ====================================================== -->
 
     <section class="page-banner">
 
@@ -96,9 +126,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          GALERÍA
-    ========================== -->
+    ====================================================== -->
 
     <main class="container gallery-section">
 
@@ -114,7 +144,7 @@
 
             <p>
                 Explore algunos de los trabajos realizados por ALoGráfico.
-                Haga clic sobre cualquier proyecto para ver más.
+                Haga clic sobre cualquier proyecto para verlo.
             </p>
 
         </div>
@@ -123,15 +153,20 @@
         <div class="gallery-grid">
 
 
-            <!-- PRODUCTO 1 -->
+            <!-- =================================================
+                 PRODUCTO 1
+            ================================================== -->
 
             <article
-                class="gallery-card reveal"
-                data-gallery='["assets/product-1.jpg","assets/product-1-2.jpg"]'
+                class="product-card reveal"
+                data-images='["assets/product-1.jpg","assets/product-1-2.jpg"]'
                 data-title="Letras 3D con luz"
+                tabindex="0"
+                role="button"
+                aria-label="Ver Letras 3D con luz"
             >
 
-                <div class="gallery-image">
+                <div class="product-img">
 
                     <img
                         src="assets/product-1.jpg"
@@ -140,14 +175,11 @@
 
                 </div>
 
-                <div class="gallery-info">
+                <div class="product-name">
 
-                    <h3>
-                        Letras 3D con luz
-                    </h3>
+                    Letras 3D con luz
 
-                    <span>
-                        Ver proyecto
+                    <span class="product-arrow">
                         <i class="fa-solid fa-arrow-right"></i>
                     </span>
 
@@ -156,15 +188,20 @@
             </article>
 
 
-            <!-- PRODUCTO 2 -->
+            <!-- =================================================
+                 PRODUCTO 2
+            ================================================== -->
 
             <article
-                class="gallery-card reveal"
-                data-gallery='["assets/product-2.jpg","assets/product-2-2.jpg"]'
+                class="product-card reveal"
+                data-images='["assets/product-2.jpg","assets/product-2-2.jpg"]'
                 data-title="Caja de luz"
+                tabindex="0"
+                role="button"
+                aria-label="Ver Caja de luz"
             >
 
-                <div class="gallery-image">
+                <div class="product-img">
 
                     <img
                         src="assets/product-2.jpg"
@@ -173,14 +210,11 @@
 
                 </div>
 
-                <div class="gallery-info">
+                <div class="product-name">
 
-                    <h3>
-                        Caja de luz
-                    </h3>
+                    Caja de luz
 
-                    <span>
-                        Ver proyecto
+                    <span class="product-arrow">
                         <i class="fa-solid fa-arrow-right"></i>
                     </span>
 
@@ -189,15 +223,20 @@
             </article>
 
 
-            <!-- PRODUCTO 3 -->
+            <!-- =================================================
+                 PRODUCTO 3
+            ================================================== -->
 
             <article
-                class="gallery-card reveal"
-                data-gallery='["assets/product-3.jpg","assets/product-3-2.jpg"]'
+                class="product-card reveal"
+                data-images='["assets/product-3.jpg","assets/product-3-2.jpg"]'
                 data-title="Tótem"
+                tabindex="0"
+                role="button"
+                aria-label="Ver Tótem"
             >
 
-                <div class="gallery-image">
+                <div class="product-img">
 
                     <img
                         src="assets/product-3.jpg"
@@ -206,14 +245,11 @@
 
                 </div>
 
-                <div class="gallery-info">
+                <div class="product-name">
 
-                    <h3>
-                        Tótem
-                    </h3>
+                    Tótem
 
-                    <span>
-                        Ver proyecto
+                    <span class="product-arrow">
                         <i class="fa-solid fa-arrow-right"></i>
                     </span>
 
@@ -222,15 +258,20 @@
             </article>
 
 
-            <!-- PRODUCTO 4 -->
+            <!-- =================================================
+                 PRODUCTO 4
+            ================================================== -->
 
             <article
-                class="gallery-card reveal"
-                data-gallery='["assets/product-4.jpg","assets/product-4-2.jpg"]'
+                class="product-card reveal"
+                data-images='["assets/product-4.jpg","assets/product-4-2.jpg"]'
                 data-title="Rótulo luminoso - halo de luz"
+                tabindex="0"
+                role="button"
+                aria-label="Ver Rótulo luminoso - halo de luz"
             >
 
-                <div class="gallery-image">
+                <div class="product-img">
 
                     <img
                         src="assets/product-4.jpg"
@@ -239,14 +280,11 @@
 
                 </div>
 
-                <div class="gallery-info">
+                <div class="product-name">
 
-                    <h3>
-                        Rótulo luminoso - halo de luz
-                    </h3>
+                    Rótulo luminoso - halo de luz
 
-                    <span>
-                        Ver proyecto
+                    <span class="product-arrow">
                         <i class="fa-solid fa-arrow-right"></i>
                     </span>
 
@@ -255,15 +293,20 @@
             </article>
 
 
-            <!-- PRODUCTO 5 -->
+            <!-- =================================================
+                 PRODUCTO 5
+            ================================================== -->
 
             <article
-                class="gallery-card reveal"
-                data-gallery='["assets/branding-banner.jpg","assets/branding-banner-2.jpg"]'
+                class="product-card reveal"
+                data-images='["assets/branding-banner.jpg","assets/branding-banner-2.jpg"]'
                 data-title="Rotulación vehicular"
+                tabindex="0"
+                role="button"
+                aria-label="Ver Rotulación vehicular"
             >
 
-                <div class="gallery-image">
+                <div class="product-img">
 
                     <img
                         src="assets/branding-banner.jpg"
@@ -272,14 +315,11 @@
 
                 </div>
 
-                <div class="gallery-info">
+                <div class="product-name">
 
-                    <h3>
-                        Rotulación vehicular
-                    </h3>
+                    Rotulación vehicular
 
-                    <span>
-                        Ver proyecto
+                    <span class="product-arrow">
                         <i class="fa-solid fa-arrow-right"></i>
                     </span>
 
@@ -288,15 +328,20 @@
             </article>
 
 
-            <!-- PRODUCTO 6 -->
+            <!-- =================================================
+                 PRODUCTO 6
+            ================================================== -->
 
             <article
-                class="gallery-card reveal"
-                data-gallery='["assets/contact-banner.jpg","assets/contact-banner-2.jpg"]'
+                class="product-card reveal"
+                data-images='["assets/contact-banner.jpg","assets/contact-banner-2.jpg"]'
                 data-title="Display"
+                tabindex="0"
+                role="button"
+                aria-label="Ver Display"
             >
 
-                <div class="gallery-image">
+                <div class="product-img">
 
                     <img
                         src="assets/contact-banner.jpg"
@@ -305,14 +350,11 @@
 
                 </div>
 
-                <div class="gallery-info">
+                <div class="product-name">
 
-                    <h3>
-                        Display
-                    </h3>
+                    Display
 
-                    <span>
-                        Ver proyecto
+                    <span class="product-arrow">
                         <i class="fa-solid fa-arrow-right"></i>
                     </span>
 
@@ -321,15 +363,20 @@
             </article>
 
 
-            <!-- PRODUCTO 7 -->
+            <!-- =================================================
+                 PRODUCTO 7
+            ================================================== -->
 
             <article
-                class="gallery-card reveal"
-                data-gallery='["assets/branding-banner.jpg","assets/branding-banner-3.jpg"]'
+                class="product-card reveal"
+                data-images='["assets/branding-banner.jpg","assets/branding-banner-3.jpg"]'
                 data-title="Rótulos en PVC"
+                tabindex="0"
+                role="button"
+                aria-label="Ver Rótulos en PVC"
             >
 
-                <div class="gallery-image">
+                <div class="product-img">
 
                     <img
                         src="assets/branding-banner.jpg"
@@ -338,14 +385,11 @@
 
                 </div>
 
-                <div class="gallery-info">
+                <div class="product-name">
 
-                    <h3>
-                        Rótulos en PVC
-                    </h3>
+                    Rótulos en PVC
 
-                    <span>
-                        Ver proyecto
+                    <span class="product-arrow">
                         <i class="fa-solid fa-arrow-right"></i>
                     </span>
 
@@ -354,15 +398,20 @@
             </article>
 
 
-            <!-- PRODUCTO 8 -->
+            <!-- =================================================
+                 PRODUCTO 8
+            ================================================== -->
 
             <article
-                class="gallery-card reveal"
-                data-gallery='["assets/contact-banner.jpg","assets/contact-banner-3.jpg"]'
+                class="product-card reveal"
+                data-images='["assets/contact-banner.jpg","assets/contact-banner-3.jpg"]'
                 data-title="Tarjetas de presentación"
+                tabindex="0"
+                role="button"
+                aria-label="Ver Tarjetas de presentación"
             >
 
-                <div class="gallery-image">
+                <div class="product-img">
 
                     <img
                         src="assets/contact-banner.jpg"
@@ -371,14 +420,11 @@
 
                 </div>
 
-                <div class="gallery-info">
+                <div class="product-name">
 
-                    <h3>
-                        Tarjetas de presentación
-                    </h3>
+                    Tarjetas de presentación
 
-                    <span>
-                        Ver proyecto
+                    <span class="product-arrow">
                         <i class="fa-solid fa-arrow-right"></i>
                     </span>
 
@@ -390,18 +436,18 @@
         </div>
 
 
-        <!-- =========================
-             BOTÓN VER MÁS
-        ========================== -->
+        <!-- =====================================================
+             VER MÁS PRODUCTOS
+        ====================================================== -->
 
         <div class="gallery-more reveal">
 
-            <button class="btn btn-primary" id="loadMore">
-
+            <button
+                class="btn btn-primary"
+                id="loadMore"
+                type="button"
+            >
                 Ver más productos
-
-                <i class="fa-solid fa-plus"></i>
-
             </button>
 
         </div>
@@ -409,47 +455,57 @@
     </main>
 
 
-    <!-- =========================
-         MODAL / GALERÍA
-    ========================== -->
+    <!-- =====================================================
+         MODAL DE LA GALERÍA
+    ====================================================== -->
 
-    <div class="modal" id="galleryModal">
+    <div
+        class="modal"
+        id="galleryModal"
+        aria-hidden="true"
+    >
 
-        <div class="modal-content gallery-modal-content">
+        <div class="modal-backdrop"></div>
 
+        <div
+            class="modal-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle"
+        >
 
-            <!-- BOTÓN CERRAR -->
+            <!-- CERRAR -->
 
             <button
                 class="modal-close"
                 id="modalClose"
+                type="button"
                 aria-label="Cerrar"
             >
-                <i class="fa-solid fa-xmark"></i>
+                &times;
             </button>
 
 
             <!-- VISOR -->
 
-            <div class="gallery-viewer">
+            <div class="gallery-modal-viewer">
 
 
                 <!-- ANTERIOR -->
 
                 <button
-                    class="gallery-arrow gallery-prev"
+                    class="gallery-nav prev"
                     id="galleryPrev"
-                    aria-label="Imagen anterior"
+                    type="button"
+                    aria-label="Foto anterior"
                 >
-
                     <i class="fa-solid fa-chevron-left"></i>
-
                 </button>
 
 
                 <!-- IMAGEN -->
 
-                <div class="gallery-image-container">
+                <div class="gallery-modal-image">
 
                     <img
                         id="modalImage"
@@ -458,8 +514,8 @@
                     >
 
                     <div
-                        class="gallery-counter"
-                        id="galleryCounter"
+                        class="gallery-number"
+                        id="galleryNumber"
                     >
                         1 / 2
                     </div>
@@ -470,22 +526,20 @@
                 <!-- SIGUIENTE -->
 
                 <button
-                    class="gallery-arrow gallery-next"
+                    class="gallery-nav next"
                     id="galleryNext"
-                    aria-label="Imagen siguiente"
+                    type="button"
+                    aria-label="Foto siguiente"
                 >
-
                     <i class="fa-solid fa-chevron-right"></i>
-
                 </button>
-
 
             </div>
 
 
             <!-- INFORMACIÓN -->
 
-            <div class="modal-info">
+            <div class="modal-content">
 
                 <h2 id="modalTitle"></h2>
 
@@ -494,21 +548,18 @@
                     class="btn btn-primary"
                 >
                     Consultar
-
-                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
 
             </div>
-
 
         </div>
 
     </div>
 
 
-    <!-- =========================
+    <!-- =====================================================
          FOOTER
-    ========================== -->
+    ====================================================== -->
 
     <footer class="site-footer">
 
@@ -528,6 +579,7 @@
 
             </div>
 
+
             <div>
 
                 <h4>
@@ -543,10 +595,12 @@
 
         </div>
 
+
         <div class="footer-bottom">
 
             <p>
-                © <span id="year"></span> ALoGráfico. Todos los derechos reservados.
+                © <span id="year"></span>
+                ALoGráfico. Todos los derechos reservados.
             </p>
 
         </div>
@@ -560,4 +614,3 @@
 
 </body>
 </html>
-```
