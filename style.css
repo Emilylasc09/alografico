@@ -2274,50 +2274,42 @@ img {
 
   }
 
-}
 /* =========================================
-   VISOR DE GALERÍA
+   GALERÍA INTERNA DE CADA PRODUCTO
+   SOLO PARA LAS FOTOS DEL MODAL
 ========================================= */
 
-.gallery-modal-content {
-    width: min(950px, 92vw);
-    max-width: 950px;
-    padding: 25px;
-    animation: galleryModalIn 0.35s ease;
-}
-
-.gallery-viewer {
-    position: relative;
+.gallery-modal-viewer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 18px;
+    width: 100%;
 }
 
-.gallery-image-container {
+.gallery-modal-image {
     position: relative;
-    width: min(720px, 75vw);
-    height: min(520px, 65vh);
+    width: min(700px, 75vw);
+    height: min(500px, 65vh);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border-radius: 18px;
-    background: #f4f6fa;
+    border-radius: 14px;
 }
 
-.gallery-image-container img {
+.gallery-modal-image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.97);
     transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
+        opacity 0.25s ease,
+        transform 0.25s ease;
 }
 
-.gallery-image-container img.gallery-image-show {
+.gallery-modal-image img.gallery-photo-active {
     opacity: 1;
     transform: scale(1);
 }
@@ -2325,81 +2317,53 @@ img {
 
 /* Flechas */
 
-.gallery-arrow {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
+.gallery-nav {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
     border: none;
     border-radius: 50%;
     background: var(--navy);
     color: white;
+    cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    font-size: 17px;
+
     transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        box-shadow 0.25s ease;
-    z-index: 5;
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.gallery-arrow:hover {
-    transform: scale(1.12);
+.gallery-nav:hover {
     background: var(--blue);
-    box-shadow: 0 8px 22px rgba(18, 104, 232, 0.28);
+    transform: scale(1.1);
+    box-shadow: 0 6px 18px rgba(18, 104, 232, 0.25);
 }
 
-.gallery-arrow:active {
-    transform: scale(0.96);
+.gallery-nav:active {
+    transform: scale(0.95);
 }
 
 
-/* Contador 1 / 2 */
+/* Número de foto */
 
-.gallery-counter {
+.gallery-number {
     position: absolute;
-    bottom: 15px;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
+
     background: rgba(8, 43, 107, 0.88);
     color: white;
-    padding: 7px 14px;
+
+    padding: 5px 12px;
     border-radius: 20px;
-    font-size: 13px;
+
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.3px;
-    backdrop-filter: blur(5px);
-}
-
-
-/* Información inferior */
-
-.gallery-modal-content .modal-info {
-    text-align: center;
-    padding-top: 20px;
-}
-
-.gallery-modal-content .modal-info h2 {
-    margin-bottom: 18px;
-}
-
-
-/* Animación de entrada */
-
-@keyframes galleryModalIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.97);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
 }
 
 
@@ -2407,24 +2371,20 @@ img {
 
 @media (max-width: 700px) {
 
-    .gallery-modal-content {
-        padding: 15px;
-    }
-
-    .gallery-viewer {
+    .gallery-modal-viewer {
         gap: 8px;
     }
 
-    .gallery-image-container {
-        width: calc(100vw - 110px);
+    .gallery-modal-image {
+        width: calc(100vw - 100px);
         height: 55vh;
     }
 
-    .gallery-arrow {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        font-size: 14px;
+    .gallery-nav {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        font-size: 13px;
     }
-
+  }
 }
