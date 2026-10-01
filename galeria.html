@@ -1,519 +1,563 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+    <title>ALoGráfico | Galería</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-  <meta
-    name="description"
-    content="ALoGráfico - Rotulación, diseño gráfico e impresión digital."
-  >
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
 
-  <title>ALoGráfico | Galería</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-<header class="site-header">
+    <header class="site-header">
 
-  <div class="header-inner container">
+        <div class="container nav-wrap">
 
+            <a href="index.html" class="brand">
+                <img src="assets/logo.jpg" alt="ALoGráfico">
+            </a>
 
-    <a class="brand" href="index.html">
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
-      <img
-        src="assets/logo.jpg"
-        alt="Logo ALoGráfico"
-      >
+            <nav class="main-nav" id="mainNav">
 
-      <span>
-        ALoGráfico
-      </span>
+                <a href="index.html">Inicio</a>
 
-    </a>
+                <a href="nosotros.html">Nosotros</a>
 
+                <a href="servicios.html">Servicios</a>
 
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-label="Abrir menú"
-      aria-expanded="false"
-    >
+                <a href="galeria.html" class="active">Galería</a>
 
-      <span></span>
-      <span></span>
-      <span></span>
+                <a href="contactenos.html">Contáctenos</a>
 
-    </button>
+            </nav>
 
+            <div class="nav-actions">
 
-    <nav class="main-nav">
+                <a href="contactenos.html" class="btn btn-outline">
+                    Consultar
+                </a>
 
-      <a href="index.html" data-page="inicio">
-        Inicio
-      </a>
+                <a href="contactenos.html" class="btn btn-primary">
+                    Contáctenos
+                </a>
 
-      <a href="nosotros.html" data-page="nosotros">
-        Nosotros
-      </a>
+            </div>
 
-      <a href="servicios.html" data-page="servicios">
-        Servicios
-      </a>
+        </div>
 
-      <a href="galeria.html" data-page="galeria">
-        Galería
-      </a>
-
-      <a href="contactenos.html" data-page="contactenos">
-        Contáctenos
-      </a>
-
-    </nav>
+    </header>
 
 
-    <div class="header-tagline">
-      Su mejor opción en Rotulación
+    <!-- =========================
+         BANNER
+    ========================== -->
+
+    <section class="page-banner">
+
+        <div class="container">
+
+            <span class="eyebrow">
+                NUESTROS TRABAJOS
+            </span>
+
+            <h1>
+                Galería
+            </h1>
+
+            <p>
+                Conozca algunos de nuestros proyectos y trabajos realizados.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GALERÍA
+    ========================== -->
+
+    <main class="container gallery-section">
+
+        <div class="section-heading reveal">
+
+            <span class="eyebrow">
+                PROYECTOS
+            </span>
+
+            <h2>
+                Ideas que se convierten en realidad
+            </h2>
+
+            <p>
+                Explore algunos de los trabajos realizados por ALoGráfico.
+                Haga clic sobre cualquier proyecto para ver más.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+
+            <!-- PRODUCTO 1 -->
+
+            <article
+                class="gallery-card reveal"
+                data-gallery='["assets/product-1.jpg","assets/product-1-2.jpg"]'
+                data-title="Letras 3D con luz"
+            >
+
+                <div class="gallery-image">
+
+                    <img
+                        src="assets/product-1.jpg"
+                        alt="Letras 3D con luz"
+                    >
+
+                </div>
+
+                <div class="gallery-info">
+
+                    <h3>
+                        Letras 3D con luz
+                    </h3>
+
+                    <span>
+                        Ver proyecto
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 2 -->
+
+            <article
+                class="gallery-card reveal"
+                data-gallery='["assets/product-2.jpg","assets/product-2-2.jpg"]'
+                data-title="Caja de luz"
+            >
+
+                <div class="gallery-image">
+
+                    <img
+                        src="assets/product-2.jpg"
+                        alt="Caja de luz"
+                    >
+
+                </div>
+
+                <div class="gallery-info">
+
+                    <h3>
+                        Caja de luz
+                    </h3>
+
+                    <span>
+                        Ver proyecto
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 3 -->
+
+            <article
+                class="gallery-card reveal"
+                data-gallery='["assets/product-3.jpg","assets/product-3-2.jpg"]'
+                data-title="Tótem"
+            >
+
+                <div class="gallery-image">
+
+                    <img
+                        src="assets/product-3.jpg"
+                        alt="Tótem"
+                    >
+
+                </div>
+
+                <div class="gallery-info">
+
+                    <h3>
+                        Tótem
+                    </h3>
+
+                    <span>
+                        Ver proyecto
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 4 -->
+
+            <article
+                class="gallery-card reveal"
+                data-gallery='["assets/product-4.jpg","assets/product-4-2.jpg"]'
+                data-title="Rótulo luminoso - halo de luz"
+            >
+
+                <div class="gallery-image">
+
+                    <img
+                        src="assets/product-4.jpg"
+                        alt="Rótulo luminoso - halo de luz"
+                    >
+
+                </div>
+
+                <div class="gallery-info">
+
+                    <h3>
+                        Rótulo luminoso - halo de luz
+                    </h3>
+
+                    <span>
+                        Ver proyecto
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 5 -->
+
+            <article
+                class="gallery-card reveal"
+                data-gallery='["assets/branding-banner.jpg","assets/branding-banner-2.jpg"]'
+                data-title="Rotulación vehicular"
+            >
+
+                <div class="gallery-image">
+
+                    <img
+                        src="assets/branding-banner.jpg"
+                        alt="Rotulación vehicular"
+                    >
+
+                </div>
+
+                <div class="gallery-info">
+
+                    <h3>
+                        Rotulación vehicular
+                    </h3>
+
+                    <span>
+                        Ver proyecto
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 6 -->
+
+            <article
+                class="gallery-card reveal"
+                data-gallery='["assets/contact-banner.jpg","assets/contact-banner-2.jpg"]'
+                data-title="Display"
+            >
+
+                <div class="gallery-image">
+
+                    <img
+                        src="assets/contact-banner.jpg"
+                        alt="Display"
+                    >
+
+                </div>
+
+                <div class="gallery-info">
+
+                    <h3>
+                        Display
+                    </h3>
+
+                    <span>
+                        Ver proyecto
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 7 -->
+
+            <article
+                class="gallery-card reveal"
+                data-gallery='["assets/branding-banner.jpg","assets/branding-banner-3.jpg"]'
+                data-title="Rótulos en PVC"
+            >
+
+                <div class="gallery-image">
+
+                    <img
+                        src="assets/branding-banner.jpg"
+                        alt="Rótulos en PVC"
+                    >
+
+                </div>
+
+                <div class="gallery-info">
+
+                    <h3>
+                        Rótulos en PVC
+                    </h3>
+
+                    <span>
+                        Ver proyecto
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 8 -->
+
+            <article
+                class="gallery-card reveal"
+                data-gallery='["assets/contact-banner.jpg","assets/contact-banner-3.jpg"]'
+                data-title="Tarjetas de presentación"
+            >
+
+                <div class="gallery-image">
+
+                    <img
+                        src="assets/contact-banner.jpg"
+                        alt="Tarjetas de presentación"
+                    >
+
+                </div>
+
+                <div class="gallery-info">
+
+                    <h3>
+                        Tarjetas de presentación
+                    </h3>
+
+                    <span>
+                        Ver proyecto
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+
+        <!-- =========================
+             BOTÓN VER MÁS
+        ========================== -->
+
+        <div class="gallery-more reveal">
+
+            <button class="btn btn-primary" id="loadMore">
+
+                Ver más productos
+
+                <i class="fa-solid fa-plus"></i>
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         MODAL / GALERÍA
+    ========================== -->
+
+    <div class="modal" id="galleryModal">
+
+        <div class="modal-content gallery-modal-content">
+
+
+            <!-- BOTÓN CERRAR -->
+
+            <button
+                class="modal-close"
+                id="modalClose"
+                aria-label="Cerrar"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <!-- VISOR -->
+
+            <div class="gallery-viewer">
+
+
+                <!-- ANTERIOR -->
+
+                <button
+                    class="gallery-arrow gallery-prev"
+                    id="galleryPrev"
+                    aria-label="Imagen anterior"
+                >
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </button>
+
+
+                <!-- IMAGEN -->
+
+                <div class="gallery-image-container">
+
+                    <img
+                        id="modalImage"
+                        src=""
+                        alt=""
+                    >
+
+                    <div
+                        class="gallery-counter"
+                        id="galleryCounter"
+                    >
+                        1 / 2
+                    </div>
+
+                </div>
+
+
+                <!-- SIGUIENTE -->
+
+                <button
+                    class="gallery-arrow gallery-next"
+                    id="galleryNext"
+                    aria-label="Imagen siguiente"
+                >
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+            </div>
+
+
+            <!-- INFORMACIÓN -->
+
+            <div class="modal-info">
+
+                <h2 id="modalTitle"></h2>
+
+                <a
+                    href="contactenos.html"
+                    class="btn btn-primary"
+                >
+                    Consultar
+
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+        </div>
+
     </div>
 
 
-  </div>
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
-</header>
+    <footer class="site-footer">
 
+        <div class="container footer-content">
 
+            <div>
 
-<main>
+                <img
+                    src="assets/logo.jpg"
+                    alt="ALoGráfico"
+                    class="footer-logo"
+                >
 
+                <p>
+                    Su mejor opción en Rotulación.
+                </p>
 
-  <section class="simple-title gallery-title reveal">
+            </div>
 
-    <div class="container">
+            <div>
 
-      <span class="eyebrow">
-        TRABAJOS Y PRODUCTOS
-      </span>
+                <h4>
+                    ALoGráfico
+                </h4>
 
-      <h1>
-        Nuestros Productos
-      </h1>
+                <p>
+                    Diseño, rotulación e impresión para hacer
+                    destacar su marca.
+                </p>
 
-      <p>
-        Calidad y variedad en cada proyecto.
-      </p>
+            </div>
 
-    </div>
+        </div>
 
-  </section>
+        <div class="footer-bottom">
 
+            <p>
+                © <span id="year"></span> ALoGráfico. Todos los derechos reservados.
+            </p>
 
+        </div>
 
-  <section class="container gallery-grid section">
+    </footer>
 
 
-    <!-- PRODUCTO 1 -->
+    <!-- JAVASCRIPT -->
 
-    <button
-      class="product-card reveal"
-      type="button"
-      data-product="Letras 3D con luz"
-      data-image="assets/product-1.jpg"
-    >
-
-      <span class="product-img">
-
-        <img
-          src="assets/product-1.jpg"
-          alt="Letras 3D con luz"
-          loading="lazy"
-        >
-
-      </span>
-
-      <span class="product-name">
-        Letras 3D con luz
-      </span>
-
-      <span class="product-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- PRODUCTO 2 -->
-
-    <button
-      class="product-card reveal"
-      type="button"
-      data-product="Caja de luz"
-      data-image="assets/product-2.jpg"
-    >
-
-      <span class="product-img">
-
-        <img
-          src="assets/product-2.jpg"
-          alt="Caja de luz"
-          loading="lazy"
-        >
-
-      </span>
-
-      <span class="product-name">
-        Caja de luz
-      </span>
-
-      <span class="product-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- PRODUCTO 3 -->
-
-    <button
-      class="product-card reveal"
-      type="button"
-      data-product="Tótem"
-      data-image="assets/product-3.jpg"
-    >
-
-      <span class="product-img">
-
-        <img
-          src="assets/product-3.jpg"
-          alt="Tótem"
-          loading="lazy"
-        >
-
-      </span>
-
-      <span class="product-name">
-        Tótem
-      </span>
-
-      <span class="product-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- PRODUCTO 4 -->
-
-    <button
-      class="product-card reveal"
-      type="button"
-      data-product="Rótulo luminoso - halo de luz"
-      data-image="assets/product-4.jpg"
-    >
-
-      <span class="product-img">
-
-        <img
-          src="assets/product-4.jpg"
-          alt="Rótulo luminoso - halo de luz"
-          loading="lazy"
-        >
-
-      </span>
-
-      <span class="product-name">
-        Rótulo luminoso - halo de luz
-      </span>
-
-      <span class="product-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- PRODUCTO 5 -->
-
-    <button
-      class="product-card reveal"
-      type="button"
-      data-product="Rotulación vehicular"
-      data-image="assets/branding-banner.jpg"
-    >
-
-      <span class="product-img">
-
-        <img
-          src="assets/branding-banner.jpg"
-          alt="Rotulación vehicular"
-          loading="lazy"
-        >
-
-      </span>
-
-      <span class="product-name">
-        Rotulación vehicular
-      </span>
-
-      <span class="product-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- PRODUCTO 6 -->
-
-    <button
-      class="product-card reveal"
-      type="button"
-      data-product="Display"
-      data-image="assets/contact-banner.jpg"
-    >
-
-      <span class="product-img">
-
-        <img
-          src="assets/contact-banner.jpg"
-          alt="Display"
-          loading="lazy"
-        >
-
-      </span>
-
-      <span class="product-name">
-        Display
-      </span>
-
-      <span class="product-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- PRODUCTO 7 -->
-
-    <button
-      class="product-card reveal"
-      type="button"
-      data-product="Rótulos en PVC"
-      data-image="assets/branding-banner.jpg"
-    >
-
-      <span class="product-img">
-
-        <img
-          src="assets/branding-banner.jpg"
-          alt="Rótulos en PVC"
-          loading="lazy"
-        >
-
-      </span>
-
-      <span class="product-name">
-        Rótulos en PVC
-      </span>
-
-      <span class="product-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- PRODUCTO 8 -->
-
-    <button
-      class="product-card reveal"
-      type="button"
-      data-product="Tarjetas de presentación"
-      data-image="assets/contact-banner.jpg"
-    >
-
-      <span class="product-img">
-
-        <img
-          src="assets/contact-banner.jpg"
-          alt="Tarjetas de presentación"
-          loading="lazy"
-        >
-
-      </span>
-
-      <span class="product-name">
-        Tarjetas de presentación
-      </span>
-
-      <span class="product-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-  </section>
-
-
-
-  <div class="center-action">
-
-    <button
-      class="btn btn-blue"
-      id="moreProducts"
-    >
-
-      Ver más productos
-
-      <span>
-        ↗
-      </span>
-
-    </button>
-
-  </div>
-
-
-</main>
-
-
-
-<!-- VENTANA DE PRODUCTO -->
-
-<div
-  class="modal"
-  id="productModal"
-  aria-hidden="true"
->
-
-  <div
-    class="modal-backdrop"
-    data-close-modal
-  ></div>
-
-
-  <div
-    class="modal-box"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modalTitle"
-  >
-
-    <button
-      class="modal-close"
-      type="button"
-      data-close-modal
-      aria-label="Cerrar"
-    >
-      ×
-    </button>
-
-
-    <img
-      id="modalImage"
-      src=""
-      alt=""
-    >
-
-
-    <div class="modal-content">
-
-      <span class="eyebrow">
-        ALoGRÁFICO
-      </span>
-
-      <h2 id="modalTitle"></h2>
-
-      <p>
-        Este espacio está preparado para mostrar
-        más fotografías, acabados y ejemplos
-        de este producto.
-      </p>
-
-      <a
-        class="btn btn-lime"
-        href="contactenos.html"
-      >
-
-        Consultar
-
-        <span>
-          →
-        </span>
-
-      </a>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-<footer class="site-footer">
-
-  <div class="container footer-inner">
-
-    <a class="brand brand-footer" href="index.html">
-
-      <img
-        src="assets/logo.jpg"
-        alt="Logo ALoGráfico"
-      >
-
-      <span>
-        ALoGráfico
-      </span>
-
-    </a>
-
-    <p>
-      Su mejor opción en Rotulación
-    </p>
-
-    <span>
-      © <span id="year"></span>
-      ALoGráfico. Todos los derechos reservados.
-    </span>
-
-  </div>
-
-</footer>
-
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
+```
